@@ -21,3 +21,7 @@ __각 Contributor는 자신의 전용 브랜치를 제외한 나머지 브랜치
     기본적으로는 2명에게 받아야 하지만 2명에 대해서는 bypass 할 수 있도록 설정함. 따라서, merge할 수 있는 상황이라고 하더라도 나머지 한 명의 code owner에게 approve 받지 않았다면 merge하지 않아야 함. 
     
     approve 받지 않고 merge 했다면 해당 내용을 revert 혹은 reset 하고 PR 과정을 거쳐야 함.
+
+# Commit Message Convention
+
+[문서 링크](https://github.com/Team-CMD/NowKick/blob/main/.github/COMMIT_MESSAGE_CONVENTION.md)
