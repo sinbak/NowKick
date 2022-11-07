@@ -5,7 +5,7 @@ Github Flow를 사용함.
 ### 각 Contributor별 전용 브랜치 목록
 
 - @ShangbinLee : shangbin
-- @sinbak : hs_back
+- @sinbak : hyeonsu
 - @jangjuntae : juntae
 - @Byunjihun : jihun
 
