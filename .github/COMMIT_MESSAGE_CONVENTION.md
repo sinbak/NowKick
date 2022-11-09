@@ -44,7 +44,7 @@
 
 2. 
     ```
-    pref : Improve select query for user info(#44)
+    perf : Improve select query for user info(#44)
     ```
 
     ```
