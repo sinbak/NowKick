@@ -42,22 +42,7 @@
 
 <br>
 
-2.  
-    ```
-    chore : Update imports(close #31)
-
-    Add imports for json, SessionCookie.
-    ```
-
-    ```
-    chore : import들 업데이트(close #31)
-
-    json, SessionCookie에 대한 import들을 추가한다.
-    ```
-
-<br>
-
-3. 
+2. 
     ```
     pref : Improve select query for user info(#44)
     ```
