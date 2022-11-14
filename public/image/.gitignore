@@ -1,0 +1,5 @@
+# 모든 image 제외
+*
+
+#.gitignore 포함
+!.gitignore
