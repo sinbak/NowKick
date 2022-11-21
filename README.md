@@ -1,5 +1,12 @@
 # NowKick
 2022-2 CMD Project "바로차"
+# **팀원 소개** 
+   | Category | Position | Work | Profile |  
+   | :----- | :----- | :----- | :---- |
+   | SW Engineer | **Leader** | `Backend` | [sinbak's Github](https://github.com/sinbak) |  
+   | SW Engineer | **Main develop** | `Backend` | [ShangBinLee's Github](https://github.com/ShangBinLee) |  
+   | SW Engineer | Mate | `Frontend` | [Byunjihun's Github](https://github.com/Byunjihun) |
+   | SW Engineer | Mate | `Frontend` | [jangjuntae's Github](https://github.com/jangjuntae) |  
 
 # 요구사항
 
