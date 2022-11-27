@@ -5,7 +5,7 @@
   "type": "module",
   "main": "main.js",
   "scripts": {
-    "dev-start": "nodemon --watch * --ignore node_modules --exec npm start",
+    "dev-start": "set ENV_NAME=develop.env&&nodemon --watch * --ignore node_modules --exec npm start",
     "start": "node main.js"
   },
   "repository": {
