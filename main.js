@@ -1,6 +1,6 @@
+import _ from './lib/env_config.js';
 import express from 'express';
 import example from './router/example.js';
-import _ from './lib/env_config.js';
 
 const app = express();
 
