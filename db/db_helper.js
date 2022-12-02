@@ -23,7 +23,7 @@ const query = async (sql, args) =>
 {
     const con = await pool.getConnection();
 
-    const result = await con.query(sql, args);
+    const [ result ] = await con.query(sql, args);
     con.release();
 
     return result;
