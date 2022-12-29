@@ -39,11 +39,17 @@ Node.js 패키지 설치를 위해서
 npm install
 ```
 
+프로젝트의 db 디렉터리로 이동한 후 (ex. cd nowkick/db)
+
 Mysql nowkick 계정 설정과 nowkic 데이터베이스 설정, 더미 데이터 저장을 위해
 
 ```
-mysql -u root -p < db/init.sql
+mysql -u root -p < init.sql
 ```
+
+__처음에는 root 계정의 비밀번호를 입력하고 2번째 패스워드 입력 시에는 1234(nowkick 유저의 임시 비밀번호)를 입력한다__
+
+아무런 경고 메시지가 뜨지 않으면 성공
 
 # Start Server
 
