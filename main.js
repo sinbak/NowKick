@@ -13,6 +13,7 @@ const app = express();
 app.set('view engine', 'ejs');
 app.set('views', viewPath);
 
+app.use(express.static('public'));
 app.use('/example', example);
 app.use('/match', match);
 
