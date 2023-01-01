@@ -1,6 +1,7 @@
 import _ from './lib/env_config.js';
 import express from 'express';
 import example from './router/example.js';
+import match from './router/match.js';
 import { fileURLToPath } from 'url';
 import path from 'path';
 
@@ -13,6 +14,8 @@ app.set('view engine', 'ejs');
 app.set('views', viewPath);
 
 app.use('/example', example);
+app.use('/match', match);
+
 app.get("/", (req, res) => res.end("Hello World!"));
 
 app.listen(3000, () => console.log("server started!"));
