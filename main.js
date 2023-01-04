@@ -2,6 +2,7 @@ import _ from './lib/env_config.js';
 import express from 'express';
 import example from './router/example.js';
 import match from './router/match.js';
+import user from './router/user.js';
 import { fileURLToPath } from 'url';
 import path from 'path';
 
@@ -16,6 +17,7 @@ app.set('views', viewPath);
 app.use(express.static('public'));
 app.use('/example', example);
 app.use('/match', match);
+app.use('/user', user);
 
 app.get("/", (req, res) => res.end("Hello World!"));
 
