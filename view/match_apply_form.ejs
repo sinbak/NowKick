@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>경기 참여 신청 페이지</title>
+		<meta charset="utf-8" />
+        <style>
+        input {
+            padding: 10px;
+        }
+        select{
+            padding: 10px;
+            width:255px;
+            margin-top:10px;
+        }
+        </style>
+	</head>
+    <body>
+        <form action="<%= apply_link %>" method="post">
+            <div style="display:flex; flex-direction:column; text-align:center; height:100%;">
+                <div>
+                    <label for="name"></label>
+                    <input style="width:230px;" type="text" name="name" placeholder="닉네임을 입력하세요." required>
+                </div>
+                <div>
+                    <label for="stuid"></label>
+                    <input style="width:230px; margin-top:10px;" type="number" name="stuid" placeholder="학번을 입력하세요." required>
+                </div>
+                <div>
+                    <select name="department">
+                        <option value="AI융합학과">AI융합학과</option>
+                        <option value="간호학과">간호학과</option>
+                        <option value="경영정보학과">경영정보학과</option>
+                        <option value="경영학과">경영학과</option>
+                        <option value="경제학과">경제학과</option>
+                        <option value="경찰학과">경찰학과</option>
+                        <option value="빅데이터응용학과">빅데이터응용학과</option>
+                        <option value="사학과">사학과</option>
+                        <option value="사회복지학과">사회복지학과</option>
+                        <option value="사회적경제기업학과">사회적경제기업학과</option>
+                        <option value="전기전자공학과">전기전자공학과</option>
+                        <option value="정보통신공학과">정보통신공학과</option>
+                        <option value="정치ㆍ언론학과">정치ㆍ언론학과</option>
+                        <option value="중국경제통상학과">중국경제통상학과</option>
+                        <option value="컴퓨터공학과">컴퓨터공학과</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="grade"></label>
+                    <input style="width:230px; margin-top:10px;" type="number" name="grade" placeholder="학년을 입력하세요." min="1" max="10" required>
+                </div>
+                <div>
+                    <select name="gender">
+                        <option value="남">남</option>
+                        <option value="여">여</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="email"></label>
+                    <input style="width:230px; margin-top:10px;" type="email" name="email" placeholder="한남대학교 이메일을 입력하세요." required>
+                </div>
+                <div>
+                    <input style="width:130px; margin-top:10px;"type="submit" value="신청" />
+                </div>
+            </div>
+        </form>
+    </body>
+</html>
