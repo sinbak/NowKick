@@ -1,3 +1,6 @@
+import { selectUserByStuid } from '../db/select_user.js';
+import { insertUser } from '../db/insert_user.js';
+
 const userInfoValidator = (req, res, next) =>
 {
     const userFields = [ 'name', 'stuid', 'department', 'grade', 'gender' ];
@@ -33,7 +36,41 @@ const userInfoValidator = (req, res, next) =>
     next();
 };
 
-export 
+/**
+ * req.body로 입력받은 user 정보를 통해 user table에 해당 학번(stuid)의 user가 존재하는지 확인하고(Verify)
+ * 존재하지 않으면 user table에 user 정보를 등록(Register)
+ * 존재하면 next 함수를 호출해 다음 미들웨어로 넘어간다
+ */
+const conditionalRegisterUser = async (req, res, next) =>
 {
-    userInfoValidator
+    const stuid = Number(req.body.stuid);
+
+    try
+    {
+        const userRecord = await selectUserByStuid(stuid);
+
+        if(userRecord !== undefined)
+            return next();
+        
+        await insertUser({ 
+            name : req.body.name,
+            stuid,
+            department : req.body.department,
+            grade : req.body.grade,
+            gender : req.body.gender
+        });
+    }
+    catch(e)
+    {
+        console.log(e);
+        return res.status(500).send('500 Internal Server Error Occured!');
+    }
+    
+    next();
+};
+
+export
+{
+    userInfoValidator,
+    conditionalRegisterUser
 };
