@@ -1,0 +1,62 @@
+<div>
+    <style>
+        #day_list{
+            list-style:none;
+            display:flex;
+            text-align: center;
+            justify-content: center;
+            padding: 0;
+        }
+        #day_list li{
+            border:1px solid lightgray;
+            border-radius: 3px;
+            width:50px;
+            margin-right:20px;
+            padding: 20px;
+        }
+        #day_list li:last-child{
+            margin-right: 0px;
+        }
+        #day_list a {
+            text-decoration:none;
+            color:black;
+            font-size: 20px;
+        }
+        #match_list{
+            list-style:none;
+            padding:0;
+            width: 750px;
+            margin: 0 auto;
+        }
+        #match_list a {
+            text-decoration:none;
+            color:black;
+            font-size: 20px;
+            display:flex;
+            flex-direction:row;
+            text-align:center;
+            justify-content:flex-start;
+        }
+        #match_list li{
+            border-bottom:1px solid lightgray;
+            border-left:1px solid lightgray;
+            border-right:1px solid lightgray;
+            border-radius: 3px;
+            padding: 20px;
+            border-collapse: collapse;
+        }
+        #match_list li:first-child{
+            border-top: 1px solid lightgray;
+        }
+    </style>
+    <ul id="day_list">
+        <% for(let i = 0; i < 7; i++) { %>
+            <li><a href="<%= match_list_links[i] %>"><%= days[i] %>일</a></li>
+        <% } %>
+    </ul>
+    <ul id="match_list">
+        <% for(let i = 0; i < match_info_summaries.length; i++) { %>
+            <%- include('match_info_summary.ejs', match_info_summaries[i]) %>
+        <% } %>
+    </ul>
+</div>
