@@ -1,5 +1,5 @@
 import express from 'express';
-import { selectFutsalMatch } from '../db/select_match.js';
+import { selectFutsalMatch, selectDayFutsalMatch } from '../db/select_match.js';
 import { selectFutsalField } from '../db/select_field.js';
 import { selectPlayersByMatch } from '../db/select_players_by_match.js';
 import selectAsFieldFrom from '../db/select_as_field_from.js';
@@ -104,5 +104,67 @@ router.get('/match/:match_id/player/:uid', async function(req, res) {
         return res.status(404).send('404 Not Found');
     }
 })
+
+/**
+ * page일 뒤에 예정된 경기 목록 페이지를 응답하는 라우터
+ */
+router.get('/list/:page',
+    (req, res, next) =>
+    {
+        // page 파라미터가 0 이상의 정수 문자열인지 검증
+        if(req.params.page !== '0' && /^[1-9][0-9]*$/.test(req.params.page) === false)
+            return res.status(404).send('404 Not Found');
+        
+        next();
+    },
+    async (req, res) =>
+    {
+        const page = Number(req.params.page);
+        const todayDate = new Date();
+        const pageDate = new Date();
+
+        // page가 1 이상이면 pageDate를 오늘로부터 page일 뒤의 날짜와 시작 시각으로 설정 
+        if(page > 0)
+        {
+            pageDate.setDate(todayDate.getDate() + page);
+            pageDate.setHours(0, 0, 0, 0);
+        }
+
+        try
+        {
+            const [ intendedMatchRecords, [ fieldRecord ] ] = await Promise.all(
+                [
+                    selectDayFutsalMatch(pageDate.toLocaleDateString('ko-KR').replaceAll(' ', ''), pageDate),
+                    selectFutsalField()
+                ]);
+
+            if(page !== 0 && intendedMatchRecords.length === 0)
+                return res.status(404).send('404 Not Found');
+            
+            const diffs = Array(7).fill(0).map((_, i) => i);
+            const match_list_links = diffs.map(diff => `/match/list/${diff}`);
+            const days = diffs.map(diff => todayDate.getDate() + diff);
+            const match_info_summaries = intendedMatchRecords
+                                         .map(match =>
+                                            ({
+                                                start_time : getHM(match.start_time),
+                                                location : fieldRecord.location,
+                                                match_info_link : `/match/${match.id}`
+                                            }));
+
+            return res.render('main.ejs', { 
+                match_list_info : { 
+                    match_list_links, 
+                    days, 
+                    match_info_summaries 
+                }
+            });
+        }
+        catch(e)
+        {
+            console.log(e);
+            return res.status(500).send('500 Internal Server Error Occured!');
+        }
+    });
 
 export default router;
