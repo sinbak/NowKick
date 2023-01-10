@@ -22,92 +22,98 @@
 							<span>장소 : <%= location %></span>
 							<span>경기 인원 : <%= current_member %> / 10명</span> 
                         </header>
-							<section class="page-section portfolio" id="portfolio">
-								<div class="container">
-									<h3>✔️ 참여 인원 정보 </h3>
-									<div class="divider-custom">
-										<div class="divider-custom-line"></div>
-										<div class="divider-custom-line"></div>
-									</div>
-									<div class="row justify-content-center">
-										<% for(let i =0; i < players.length; i++) { %>
-											<%- include('match_user_info.ejs',players[i]) %>
-										<% } %>
-									</section>
-								<section>
-									<header>
-										<h3>✔️ 경기장 정보 </h3>
-									</header>
-									<h1><span class="field_info">📏40x20m</span>
-										<span class="field_info">🚿샤워⭕️</span>
-										<span class="field_info">🅿️주차⭕️</span>
-										<span class="field_info">👕운동복 대여❌ </span>
-										<span class="field_info">👟풋살화 대여❌</span></h1>
-								</section>
-								<section>
-									<header>
-										<h3>✔️ 경기장 오는 길</h3>
-									</header>
-									<h1>🚋 버스 이용 시
-                                        <br> 105번 : 충남대농대 - 궁동 - 충남대 - 탄방역 - 한밭대교 - 한남대정문 - 복합터미날 - 대전보건대학 - 비래삼호아파트
-                                        <br> 314번 : 윗사정삼거리 - 오월드 - 서대전네거리 - 대전역 - 한남대 정문 - 동춘당 
-										<br> 711번 : 신탄진 - 중리동 - 한남대 정문 - 대전역 - 은행동 - 대동역 2번출구 - 대전역 동광장 <br></h1>
-										<h1><br>🅿 주차장 이용<br>
-											- 주차 등록은 전일 15시 이후 변경 및 신청 불가<br>
-											(주차 신청 후 출차 시 요금이 발생한 경우에는 주차비 영수증 챙기셔야 환불이 가능합니다.)<br>
-											- 연타임 이용 시에도 3시간까지만 무료<br>
-											- 선착순 2대만 무료 가능<br>
-                                            - 한남대학교 내부 주차장 이용
-											<br>- 풋살장 내부에는 음식물 및 음료 반입 금지이며(생수 및 음료 제외 )
-                                            <br>- 학생회관 제외 모든 시설 접근 금지 (*도난 문제 발생시 책임x)
-                                            <br>- 코로나로 인하여 대운동장 외 장소 이동시 마스크를 필히 착용 하셔야 하며 미이행시 CCTV 확인 후 추후 이용에 불이익이 발생할 수 있습니다.</h1>
-								</section>
-								<section>
-									<header>
-										<h3>✔️ 매치안내</h3>
-									</header>
-                                            <h1>🆚 5vs5 경기</h1>
-                                            <h1><br>- 로테이션 매치, 최소 10명 ~ 최대 15명
-                                            <br>- 15명인 경우 5vs5 / 최대 9쿼터(10분/쿼터)
-                                            <br>- 14명인 경우 5vs5 / 최대 7쿼터(13분/쿼터)
-                                            <br>- 12명인 경우 5vs5 / 최대 8쿼터(13분/쿼터)
-                                            <br>- 10명인 경우 5vs5 / 최대 9쿼터(10분/쿼터)
-                                            <br>- 참가자 인원 및 상황에 따라 변동될 수 있습니다.</h1>                                         
-								</section>
-								<section>
-									<header>
-										<h3>✔️ 구장 특이사항 & 주의사항 </h3>
-									</header>
-									<h1>📲 한남대학교 주차 등록은 경기 당일 전날 16시까지 카카오톡 채널 채팅으로 등록 가능 여부를 문의주셔야 무료 차량 등록이 가능합니다.<br><br>
-										🚬  흡연<br>
-										- 경기장 주변 전 지역은 금연구역입니다.(*적발시 퇴출조치)<br>
-										- (흡연구역 외에서 흡연 적발 시 이후 서비스 이용에 제재가 있을 수 있습니다.)<br><br>
-										🔍  기타<br>	
-										- 코로나로 인하여 풋살장 외 장소 이동 시 마스크를 필히 착용하셔야 하며 미이행 시 CCTV 확인 후 추후 이용에 불이익이 발생할 수 있습니다.<br>
-										- 모든 경기장과 샤워실 내 애완동물의 출입은 절대 금지이며, 적발 시 퇴출 조치 됩니다.<br>
-										-여성 샤워실은 여성 참가자 확인이 필요해 구장측에 연락 후 비밀번호 안내 받은 뒤 사용 가능합니다.</h1><br>
-									</h1>
-								</section>
-                                <section>
-									<header>
-										<h3>✔️ 참고사항</h3>
-									</header>
-									<h1>- 바로차의 모든 소셜 경기는 남자, 여자 무관하게 참가가 가능합니다.
-                                    <br>- 경기 진행 중 밸런스 차이가 심할 경우 원활한 경기를 위하여 매니저님이 밸런스를 위하여 같이 참가하신 일행분들이시더라도<br>
-                                    &nbsp;&nbsp;서로 다른 팀으로 조정할 수 있습니다.
-                                    <br>- 소셜 경기는 매너, 예의, 상호 존중을 중시하며 거친 플레이, 욕성, 타인 비방 등 비매너 행위는 지양합니다.
-                                    <br>- 따라서 매니저님의 지속된 주의에도 불구하고 비매너 행위가 계속된다면 매니저님의 판단하에 경기 제한을 할 수 있습니다.
-                                    <br>- 소셜 경기 중 싸움 및 폭행이 발생된 경우 이유 불문하고 1개월 참가 제한됩니다.</div></div> </h1>
-								</section>
-							</article>
-					</div>
-				</section>
-				<div id="copyright">
+						<section class="page-section portfolio" id="portfolio">
+							<div class="container">
+								<h3>✔️ 참여 인원 정보 </h3>
+								<div class="divider-custom">
+									<div class="divider-custom-line"></div>
+									<div class="divider-custom-line"></div>
+								</div>
+								<div class="row justify-content-center">
+									<% for(let i =0; i < players.length; i++) { %>
+										<%- include('match_user_info.ejs',players[i]) %>
+									<% } %>
+								</div>
+							</div>
+						</section>
+						<section>
+							<header>
+								<h3>✔️ 경기장 정보 </h3>
+							</header>
+							<h1><span class="field_info">📏40x20m</span>
+								<span class="field_info">🚿샤워⭕️</span>
+								<span class="field_info">🅿️주차⭕️</span>
+								<span class="field_info">👕운동복 대여❌ </span>
+								<span class="field_info">👟풋살화 대여❌</span></h1>
+						</section>
+						<section>
+							<header>
+								<h3>✔️ 경기장 오는 길</h3>
+							</header>
+							<h1>🚋 버스 이용 시
+								<br> 105번 : 충남대농대 - 궁동 - 충남대 - 탄방역 - 한밭대교 - 한남대정문 - 복합터미날 - 대전보건대학 - 비래삼호아파트
+								<br> 314번 : 윗사정삼거리 - 오월드 - 서대전네거리 - 대전역 - 한남대 정문 - 동춘당 
+								<br> 711번 : 신탄진 - 중리동 - 한남대 정문 - 대전역 - 은행동 - 대동역 2번출구 - 대전역 동광장 <br></h1>
+								<h1><br>🅿 주차장 이용<br>
+									- 주차 등록은 전일 15시 이후 변경 및 신청 불가<br>
+									(주차 신청 후 출차 시 요금이 발생한 경우에는 주차비 영수증 챙기셔야 환불이 가능합니다.)<br>
+									- 연타임 이용 시에도 3시간까지만 무료<br>
+									- 선착순 2대만 무료 가능<br>
+									- 한남대학교 내부 주차장 이용
+									<br>- 풋살장 내부에는 음식물 및 음료 반입 금지이며(생수 및 음료 제외 )
+									<br>- 학생회관 제외 모든 시설 접근 금지 (*도난 문제 발생시 책임x)
+									<br>- 코로나로 인하여 대운동장 외 장소 이동시 마스크를 필히 착용 하셔야 하며 미이행시 CCTV 확인 후 추후 이용에 불이익이 발생할 수 있습니다.</h1>
+						</section>
+						<section>
+							<header>
+								<h3>✔️ 매치안내</h3>
+							</header>
+									<h1>🆚 5vs5 경기</h1>
+									<h1><br>- 로테이션 매치, 최소 10명 ~ 최대 15명
+									<br>- 15명인 경우 5vs5 / 최대 9쿼터(10분/쿼터)
+									<br>- 14명인 경우 5vs5 / 최대 7쿼터(13분/쿼터)
+									<br>- 12명인 경우 5vs5 / 최대 8쿼터(13분/쿼터)
+									<br>- 10명인 경우 5vs5 / 최대 9쿼터(10분/쿼터)
+									<br>- 참가자 인원 및 상황에 따라 변동될 수 있습니다.</h1>                                         
+						</section>
+						<section>
+							<header>
+								<h3>✔️ 구장 특이사항 & 주의사항 </h3>
+							</header>
+							<h1>📲 한남대학교 주차 등록은 경기 당일 전날 16시까지 카카오톡 채널 채팅으로 등록 가능 여부를 문의주셔야 무료 차량 등록이 가능합니다.<br><br>
+								🚬  흡연<br>
+								- 경기장 주변 전 지역은 금연구역입니다.(*적발시 퇴출조치)<br>
+								- (흡연구역 외에서 흡연 적발 시 이후 서비스 이용에 제재가 있을 수 있습니다.)<br><br>
+								🔍  기타<br>	
+								- 코로나로 인하여 풋살장 외 장소 이동 시 마스크를 필히 착용하셔야 하며 미이행 시 CCTV 확인 후 추후 이용에 불이익이 발생할 수 있습니다.<br>
+								- 모든 경기장과 샤워실 내 애완동물의 출입은 절대 금지이며, 적발 시 퇴출 조치 됩니다.<br>
+								-여성 샤워실은 여성 참가자 확인이 필요해 구장측에 연락 후 비밀번호 안내 받은 뒤 사용 가능합니다.</h1><br>
+							</h1>
+						</section>
+						<section>
+							<header>
+								<h3>✔️ 참고사항</h3>
+							</header>
+							<h1>- 바로차의 모든 소셜 경기는 남자, 여자 무관하게 참가가 가능합니다.
+							<br>- 경기 진행 중 밸런스 차이가 심할 경우 원활한 경기를 위하여 매니저님이 밸런스를 위하여 같이 참가하신 일행분들이시더라도<br>
+							&nbsp;&nbsp;서로 다른 팀으로 조정할 수 있습니다.
+							<br>- 소셜 경기는 매너, 예의, 상호 존중을 중시하며 거친 플레이, 욕성, 타인 비방 등 비매너 행위는 지양합니다.
+							<br>- 따라서 매니저님의 지속된 주의에도 불구하고 비매너 행위가 계속된다면 매니저님의 판단하에 경기 제한을 할 수 있습니다.
+							<br>- 소셜 경기 중 싸움 및 폭행이 발생된 경우 이유 불문하고 1개월 참가 제한됩니다.
+							</h1>
+						</section>
+						<section>
+							<header>
+								<h3>✔️ 경기 참여 신청</h3>
+							</header>
+							<%- include('match_apply_form.ejs', { apply_link }) %>
+						</section>
+					</article>
 				</div>
-			 </div>
+			</section>
+			<div id="copyright">
 			</div>
-	</section>
-</div>
-<script src="/js/match-information/index.js"></script>
-</body>
+		</div>
+		<script src="/js/match-information/index.js"></script>
+	</body>
 </html>
