@@ -2,8 +2,10 @@ import express from 'express';
 import { selectFutsalMatch } from '../db/select_match.js';
 import { selectFutsalField } from '../db/select_field.js';
 import { selectPlayersByMatch } from '../db/select_players_by_match.js';
+import selectAsFieldFrom from '../db/select_as_field_from.js';
 import { user_profile_image } from '../lib/user_profile.js';
 import { getHM, getLongDateString } from '../lib/date.js';
+import { query } from '../db/db_helper.js';
 
 const router = express.Router();
 
@@ -66,5 +68,21 @@ router.get('/:matchId',
             return res.status(500).send('500 Internal Server Error Occured!');
         }
     });
+
+router.post('/match/:match_id/player', async (req, res) =>{
+    const match_current = (await selectAsFieldFrom('futsal_match', 'id', req.params.match_id)).current_member
+    if(match_current === 10)  { //참가자가 10인지 검증
+        return res.status(409).send('정원이 다 찼습니다. 다른 경기 신청바랍니다.')
+    }
+    else {
+        const confirm_uid = (await selectAsFieldFrom('user', 'stuid', res.body.stuid)).uid // 유저의 stuid를 통해 uid 가져오기
+        if ((await query('SELECT * FROM match_user WHERE uid = ? and match_id = ?',[confirm_uid, req.params.match_id])).length === 0){
+            return res.redirect(`/match/${req.params.match_id}/player/${confirm_uid}`)
+        }
+        query('INSERT INTO match_user(uid, match_id) VALUES (?, ?)',[confirm_uid, req.params.match_id]) //10명 미달로 인한 인원 추가
+        query('UPDATE futsal_match SET current_member = ? WHERE id = ?', [match_current + 1, req.params.matach_id])
+        res.redirect(`/match/${req.params.match_id}/player/${confirm_uid}`)
+    }
+})
 
 export default router;
