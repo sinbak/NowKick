@@ -34,7 +34,8 @@ CREATE TABLE `futsal_match` (
 
 CREATE TABLE `match_user` (
     `match_id` INT(12) UNSIGNED NOT NULL,
-    `uid` INT(12) UNSIGNED NOT NULL
+    `uid` INT(12) UNSIGNED NOT NULL,
+    `team` VARCHAR(4) DEFAULT NULL
 );
 
 CREATE USER 'nowkick'@'localhost' IDENTIFIED by '1234';
