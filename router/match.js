@@ -6,6 +6,8 @@ import selectAsFieldFrom from '../db/select_as_field_from.js';
 import { user_profile_image } from '../lib/user_profile.js';
 import { getHM, getLongDateString } from '../lib/date.js';
 import { query } from '../db/db_helper.js';
+import { userInfoValidator, conditionalRegisterUser } from '../middleware/user_validator.js';
+import { teamAssignHandler } from '../middleware/match_handler.js';
 
 const router = express.Router();
 
@@ -59,7 +61,8 @@ router.get('/:matchId',
                     end_time : getHM(matchRecord.end_time, 'ko-KR'),
                     location : fieldRecord.location,
                     current_member : matchRecord.current_member,
-                    players
+                    players,
+                    apply_link : `/match/${matchId}/player`
                 });
         }
         catch(e)
@@ -69,25 +72,30 @@ router.get('/:matchId',
         }
     });
 
-router.post('/match/:match_id/player', async (req, res) =>{
+router.post('/:match_id/player', 
+    userInfoValidator,
+    conditionalRegisterUser,
+    async (req, res, next) =>{
     const match_current = (await selectAsFieldFrom('futsal_match', 'id', req.params.match_id)).current_member
     if(match_current === 10)  { //참가자가 10인지 검증
         return res.status(409).send('정원이 다 찼습니다. 다른 경기 신청바랍니다.')
     }
     else {
-        const confirm_uid = (await selectAsFieldFrom('user', 'stuid', res.body.stuid)).uid // 유저의 stuid를 통해 uid 가져오기
-        if ((await query('SELECT * FROM match_user WHERE uid = ? and match_id = ?',[confirm_uid, req.params.match_id])).length === 0){
+        const confirm_uid = (await selectAsFieldFrom('user', 'stuid', req.body.stuid)).uid // 유저의 stuid를 통해 uid 가져오기
+        if ((await query('SELECT * FROM match_user WHERE uid = ? and match_id = ?',[confirm_uid, req.params.match_id])).length !== 0){
             return res.redirect(`/match/${req.params.match_id}/player/${confirm_uid}`)
         }
-        query('INSERT INTO match_user(uid, match_id) VALUES (?, ?)',[confirm_uid, req.params.match_id]) //10명 미달로 인한 인원 추가
-        query('UPDATE futsal_match SET current_member = ? WHERE id = ?', [match_current + 1, req.params.matach_id])
+        await query('INSERT INTO match_user(uid, match_id) VALUES (?, ?)',[confirm_uid, req.params.match_id]) //10명 미달로 인한 인원 추가
+        await query('UPDATE futsal_match SET current_member = ? WHERE id = ?', [match_current + 1, req.params.match_id])
         res.redirect(`/match/${req.params.match_id}/player/${confirm_uid}`)
-    }
-})
+        return next();
+    }},
+    teamAssignHandler
+)
 
-router.get('/match/:match_id/player/:uid', async function(req, res) {
+router.get('/:match_id/player/:uid', async function(req, res) {
     if(Number(req.params.match_id) >= 1 && Number(req.params.uid) >= 1){
-        const save_match = await query('SELECT * FROM match_user WHERE match_id = ? and uid = ?', [res.params.match_id, res.params.uid])
+        const save_match = await query('SELECT * FROM match_user WHERE match_id = ? and uid = ?', [req.params.match_id, req.params.uid])
         if(save_match.length === 1) {
             if( save_match[0].team === null) {
                 res.send('본 유저는 해당 경기 참가자입니다. 아직 팀 배정이 되지 않았습니다')

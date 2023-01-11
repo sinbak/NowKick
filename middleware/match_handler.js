@@ -1,4 +1,5 @@
 import { selectMatchUsersByMatchId } from '../db/select_match_user.js';
+import { updateMatchUserTeam } from '../db/update_match_user.js';
 
 /**
  * 해당 경기 참가자 수가 정원에 도달하면 참가자의 팀을 배정해주는 핸들러
@@ -22,7 +23,7 @@ const teamAssignHandler = async (req, _, next) =>
         for(let i = 0; i < matchUserRecords.length / 2; i++)
         {
             const index = Math.floor(Math.random() * uids.length);
-            const uid = uids.splice(index, 1);
+            const uid = uids.splice(index, 1)[0];
 
             teams[0].push(matchUserRecords.find(record => record.uid === uid));
         }

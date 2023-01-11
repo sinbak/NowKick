@@ -1,7 +1,7 @@
-import selectAsFieldFrom from './select_as_field_from.js';
+import { query } from './db_helper.js';
 
 const selectMatchUsersByMatchId = matchId =>
-    selectAsFieldFrom('match_user', 'match_id', matchId);
+    query(`SELECT * FROM match_user WHERE match_id = ?`, matchId);
 
 export
 {

@@ -10,7 +10,7 @@ import { query } from './db_helper.js';
  */
 const updateMatchUserTeam = (matchId, uid, teamName) =>
     query(
-        `UPDATE match_user SET team = ? WHERE matchId = ? and uid = ?`,
+        `UPDATE match_user SET team = ? WHERE match_id = ? and uid = ?`,
         [ teamName, matchId, uid ]
     );
 

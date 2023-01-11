@@ -21,6 +21,7 @@ router.get('/:uid', async function (req, res) {
             res.render('user_info.ejs', 
                 Object.assign(result, 
                     {   
+                        stuid : result.stuid.toString().slice(2, 4),
                         user_profile_image, 
                         email_id: result.stuid.toString().slice(0,4) + 'xxxx' 
                     }));
