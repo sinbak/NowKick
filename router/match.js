@@ -85,4 +85,24 @@ router.post('/match/:match_id/player', async (req, res) =>{
     }
 })
 
+router.get('/match/:match_id/player/:uid', async function(req, res) {
+    if(Number(req.params.match_id) >= 1 && Number(req.params.uid) >= 1){
+        const save_match = await query('SELECT * FROM match_user WHERE match_id = ? and uid = ?', [res.params.match_id, res.params.uid])
+        if(save_match.length === 1) {
+            if( save_match[0].team === null) {
+                res.send('본 유저는 해당 경기 참가자입니다. 아직 팀 배정이 되지 않았습니다')
+            }
+            else {
+                res.send(`본 유저는 해당 경기 참가자입니다. 팀은 ${save_match[0].team}입니다.`)
+            }
+        }
+        else {
+            res.send('본 유저는 해당 경기 참가자가 아닙니다')
+        }
+    }
+    else{
+        return res.status(404).send('404 Not Found');
+    }
+})
+
 export default router;
