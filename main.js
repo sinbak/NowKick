@@ -19,6 +19,6 @@ app.use('/example', example);
 app.use('/match', match);
 app.use('/user', user);
 
-app.get("/", (req, res) => res.end("Hello World!"));
+app.get("/", (_, res) => res.redirect("/match/list/0"));
 
 app.listen(3000, () => console.log("server started!"));
