@@ -29,9 +29,9 @@ or SSH...
 git clone git@github.com:Team-CMD/NowKick.git
 ```
 
-### __CMD or Powershell 기준__
+### __CMD or Powershell 기준(관리자 권한으로 실행)__
 
-프로젝트 디렉터리로 이동한 후(ex. cd nowkick)
+프로젝트 루트 디렉터리 기준 상대경로 __/db__ 로 이동 후
 
 Node.js 패키지 설치를 위해서
 
@@ -39,17 +39,25 @@ Node.js 패키지 설치를 위해서
 npm install
 ```
 
-프로젝트의 db 디렉터리로 이동한 후 (ex. cd nowkick/db)
-
-Mysql nowkick 계정 설정과 nowkic 데이터베이스 설정, 더미 데이터 저장을 위해
+Mysql nowkick 계정 설정과 nowkic 데이터베이스 설정을 위해
 
 ```
 mysql -u root -p < init.sql
 ```
 
-__처음에는 root 계정의 비밀번호를 입력하고 2번째 패스워드 입력 시에는 1234(nowkick 유저의 임시 비밀번호)를 입력한다__
+위의 과정이 정상적으로 완료된 후
 
-아무런 경고 메시지가 뜨지 않으면 성공
+```
+Enter Password :
+```
+
+가 출력되면 더미 데이터 저장을 위해
+
+```
+1234
+```
+
+입력 후 아무런 에러 메시지 없이 줄바꿈 후 터미널 커서가 정상적으로 출력되면 성공
 
 # Start Server
 
